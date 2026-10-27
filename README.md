@@ -22,6 +22,15 @@ Built for students abroad, immigrants, and anyone who has stared at an official 
 Model ids can be overridden with `PAPERPAL_VISION_MODEL`, `PAPERPAL_TEXT_MODEL`, `PAPERPAL_FAST_MODEL`.
 Web search: [Tavily](https://tavily.com).
 
+### Where Token Factory accelerated the workflow
+
+- **One API, three models.** Token Factory is OpenAI-compatible, so switching between the vision, reasoning and fast Nemotron models is just a different `model` id — no extra SDKs, no GPU setup, no model hosting.
+- **Vision replaces a whole pipeline.** `Nemotron-3.5-Super-VL` reads the photo directly (Korean, German, Russian, tables, stamps), so there is no separate OCR → translation → reasoning chain.
+- **Per-call reasoning control.** `reasoning_effort: "low"` for reading documents (accurate, ~25 s) and `chat_template_kwargs.enable_thinking: false` for planning and translation (~2 s) keep the whole flow under a minute.
+- **Serverless-friendly.** Calls go straight from Vercel functions to Token Factory; keys stay on the server and documents are never stored.
+
+Code: [`api/_lib.ts`](api/_lib.ts) (model routing, reasoning control, JSON retries), [`api/analyze.ts`](api/analyze.ts), [`api/verify.ts`](api/verify.ts), [`api/reply.ts`](api/reply.ts), [`api/chat.ts`](api/chat.ts).
+
 ## Architecture
 
 ```

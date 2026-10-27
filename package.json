@@ -1,0 +1,22 @@
+{
+  "name": "paperpal",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PaperPal: your personal AI for official paperwork, powered by NVIDIA Nemotron on Nebius Token Factory",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pdfjs-dist": "4.10.38"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vercel/node": "^5.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  }
+}
